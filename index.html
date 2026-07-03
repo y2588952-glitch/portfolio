@@ -81,40 +81,67 @@
         </section>
 
         <!-- 关于我 -->
+        <section class="about" id="about">
+            <div class="about-header reveal">
+                <span class="section-label">About Me</span>
+                <h2>关于我</h2>
+            </div>
 
-        <div class="card">
+            <div class="about-body">
+                <!-- 左侧：头像 -->
+                <div class="about-avatar reveal">
+                    <div class="about-avatar-ring">
+                        <img src="11.jpg" alt="个人头像">
+                    </div>
+                    <div class="about-avatar-info">
+                        <span class="about-name">亦 Yi</span>
+                        <span class="about-role">Frontend Developer · AI Learner</span>
+                    </div>
+                </div>
 
-            <h2>👋 关于我</h2>
+                <!-- 右侧：介绍 -->
+                <div class="about-content">
+                    <p class="reveal">
+                        大家好，我是<strong>亦</strong>，2025届四川民族学院计算机科学与技术专业毕业生。
+                        曾在银行网点担任客服经理（实习），后从事青少年编程教学，
+                        在教授 Scratch 和 Python 的过程中坚定了对技术的热爱。
+                        目前在成都，专注于前端开发和 AI 应用开发，
+                        希望进入一家注重成长与创新的团队，持续精进。
+                    </p>
 
-            <p>
+                    <!-- 信息卡片网格 -->
+                    <div class="about-grid">
+                        <div class="about-card reveal">
+                            <div class="about-card-icon">🎓</div>
+                            <h4>教育背景</h4>
+                            <p>四川民族学院</p>
+                            <span>计算机科学与技术 · 2021–2025</span>
+                        </div>
 
-                大家好，我是亦。
+                        <div class="about-card reveal">
+                            <div class="about-card-icon">🎯</div>
+                            <h4>兴趣爱好</h4>
+                            <p>开源探索 · 摄影</p>
+                            <span>喜欢用代码构建实用工具，用镜头记录生活瞬间</span>
+                        </div>
 
-                2025届四川民族学院计算机科学与技术专业毕业生。
+                        <div class="about-card reveal">
+                            <div class="about-card-icon">📚</div>
+                            <h4>学习方向</h4>
+                            <p>前端工程化 · AI 应用</p>
+                            <span>深入 React/Next.js 生态，探索 LLM 与 Agent 开发</span>
+                        </div>
 
-                曾在银行网点担任客服经理实习，
-
-                后从事青少年编程教学。
-
-                目前专注学习前端开发和AI应用开发，
-
-                希望进入互联网行业持续成长。
-
-            </p>
-
-        </div>
-
-        <!-- 教育经历 -->
-
-        <div class="card">
-
-            <h2>🎓 教育经历</h2>
-
-            <p>四川民族学院</p>
-
-            <p>计算机科学与技术专业（2021-2025）</p>
-
-        </div>
+                        <div class="about-card reveal">
+                            <div class="about-card-icon">🚀</div>
+                            <h4>未来目标</h4>
+                            <p>成为全栈 AI 工程师</p>
+                            <span>三年内独立交付端到端 AI 产品，在技术社区持续输出</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- 工作经历 -->
 
@@ -175,6 +202,23 @@
         </div>
 
     </div>
+
+    <script>
+        // Scroll reveal animation
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
 
 </body>
 
