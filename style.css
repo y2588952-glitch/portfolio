@@ -1,0 +1,224 @@
+/* 全局 */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:#f5f7fa;
+
+    font-family:"Microsoft YaHei",sans-serif;
+
+    color:#333;
+
+    line-height:1.8;
+
+    padding:40px;
+
+}
+
+/* 页面主体 */
+
+.container{
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+/* Hero */
+
+.hero{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+/* 头像 */
+
+.hero img{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #4a90e2;
+
+}
+
+/* 标题 */
+
+.hero h1{
+
+    font-size:42px;
+
+    color:#2c3e50;
+
+}
+
+.hero h2{
+
+    color:#4a90e2;
+
+    margin-top:10px;
+
+    font-size:24px;
+
+}
+
+.hero p{
+
+    margin-top:15px;
+
+    color:#666;
+
+}
+
+/* 技能标签 */
+
+.skills{
+
+    margin-top:20px;
+
+}
+
+.skills span{
+
+    display:inline-block;
+
+    background:#4a90e2;
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    margin-right:10px;
+
+    margin-bottom:10px;
+
+    transition:.3s;
+
+}
+
+.skills span:hover{
+
+    background:#2c6fd1;
+
+    transform:translateY(-3px);
+
+}
+
+/* 卡片 */
+
+.card{
+
+    background:white;
+
+    margin-top:30px;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+    color:#2c3e50;
+
+    margin-bottom:20px;
+
+}
+
+.card ul{
+
+    padding-left:20px;
+
+}
+
+.card li{
+
+    margin-bottom:10px;
+
+}
+nav{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    padding:20px 40px;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+.logo{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#4a90e2;
+
+}
+nav ul{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:30px;
+
+}
+nav a{
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-weight:600;
+
+    transition:.3s;
+
+} 
+nav a:hover{
+
+    color:#4a90e2;
+
+} 
