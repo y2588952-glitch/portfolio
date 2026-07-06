@@ -720,26 +720,57 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Staggered reveal for timeline */
-.timeline > .reveal:nth-child(1) { transition-delay: 0.00s; }
-.timeline > .reveal:nth-child(2) { transition-delay: 0.10s; }
-.timeline > .reveal:nth-child(3) { transition-delay: 0.20s; }
-.timeline > .reveal:nth-child(4) { transition-delay: 0.30s; }
-
-/* ===== Scroll Reveal ===== */
-.reveal {
+/* ===== Scroll Reveal System ===== */
+/* Base hidden state for all animated elements */
+.reveal,
+[data-anim] {
     opacity: 0;
-    transform: translateY(32px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.revealed {
+/* Default: fade-up */
+.reveal,
+[data-anim="fade-up"] {
+    transform: translateY(36px);
+}
+
+/* Fade only */
+[data-anim="fade-in"] {
+    transform: none;
+}
+
+/* Slide left */
+[data-anim="slide-left"] {
+    transform: translateX(-40px);
+}
+
+/* Slide right */
+[data-anim="slide-right"] {
+    transform: translateX(40px);
+}
+
+/* Scale in */
+[data-anim="scale-in"] {
+    transform: scale(0.92);
+}
+
+/* Blur in */
+[data-anim="blur-in"] {
+    transform: translateY(20px);
+    filter: blur(8px);
+}
+
+/* --- Revealed state --- */
+.reveal.revealed,
+[data-anim].revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0);
 }
 
-/* staggered reveal */
+/* --- Legacy staggered delays (preserved) --- */
 .about-right .reveal:nth-child(1) { transition-delay: 0.00s; }
 .about-right .reveal:nth-child(2) { transition-delay: 0.06s; }
 .about-right .reveal:nth-child(3) { transition-delay: 0.12s; }
@@ -747,6 +778,74 @@ nav a:hover {
 .about-details .reveal:nth-child(2) { transition-delay: 0.22s; }
 .about-details .reveal:nth-child(3) { transition-delay: 0.28s; }
 .about-details .reveal:nth-child(4) { transition-delay: 0.34s; }
+
+/* ===== Image Fade-in ===== */
+img.anim-img {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+img.anim-img.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ===== Button Ripple ===== */
+.btn,
+.project-link,
+.contact-card,
+.social-icon,
+.theme-toggle {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s ease-out forwards;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .btn-ripple {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===== Active Nav Link ===== */
+nav a.nav-active {
+    color: var(--text) !important;
+    position: relative;
+}
+
+nav a.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* ===== Parallax-ready elements ===== */
+.hero-avatar img.parallax,
+.hero-name.parallax,
+.hero-badge.parallax {
+    will-change: transform;
+}
 
 /* ===== Contact Section ===== */
 .contact {

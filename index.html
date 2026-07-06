@@ -26,15 +26,15 @@
 
         <ul>
 
-            <li><a href="#">关于我</a></li>
+            <li><a href="#about">关于我</a></li>
 
-            <li><a href="#">教育经历</a></li>
+            <li><a href="#education">教育经历</a></li>
 
-            <li><a href="#">项目</a></li>
+            <li><a href="#projects">项目</a></li>
 
-            <li><a href="#">技能</a></li>
+            <li><a href="#skills">技能</a></li>
 
-            <li><a href="#">联系我</a></li>
+            <li><a href="#contact">联系我</a></li>
 
         </ul>
 
@@ -50,9 +50,9 @@
 
         <!-- Hero区域 -->
         <section class="hero">
-            <div class="hero-badge">👋 欢迎来到我的主页</div>
+            <div class="hero-badge parallax" data-speed="0.03">👋 欢迎来到我的主页</div>
 
-            <h1 class="hero-name">亦 <span class="hero-name-en">Yi</span></h1>
+            <h1 class="hero-name parallax" data-speed="0.05">亦 <span class="hero-name-en">Yi</span></h1>
 
             <h2 class="hero-title">Frontend Developer <span class="hero-title-divider">/</span> AI Learner</h2>
 
@@ -84,8 +84,8 @@
                 </a>
             </div>
 
-            <div class="hero-avatar">
-                <img src="11.jpg" alt="个人头像">
+            <div class="hero-avatar parallax" data-speed="0.07">
+                <img src="11.jpg" alt="个人头像" class="anim-img">
             </div>
         </section>
 
@@ -96,7 +96,7 @@
                 <aside class="about-left reveal">
                     <div class="about-avatar-wrap">
                         <div class="about-avatar-glow"></div>
-                        <img src="11.jpg" alt="个人头像">
+                        <img src="11.jpg" alt="个人头像" class="anim-img">
                     </div>
                     <div class="about-meta">
                         <span class="about-meta-name">亦 Yi</span>
@@ -232,7 +232,7 @@
             <span class="section-eyebrow reveal">Projects</span>
             <h2 class="reveal">项目作品</h2>
 
-            <div class="projects-grid">
+            <div class="projects-grid" data-stagger="100">
 
                 <!-- 项目 1 -->
                 <div class="project-card reveal">
@@ -326,7 +326,7 @@
             <span class="section-eyebrow reveal">Skills</span>
             <h2 class="reveal">技术栈</h2>
 
-            <div class="skills-grid">
+            <div class="skills-grid" data-stagger="60">
                 <!-- 1 -->
                 <div class="skill-card reveal">
                     <div class="skill-icon-wrap">
@@ -430,7 +430,7 @@
             <span class="section-eyebrow reveal">Contact</span>
             <h2 class="reveal">联系我</h2>
 
-            <div class="contact-grid">
+            <div class="contact-grid" data-stagger="50">
 
                 <!-- Email -->
                 <a href="mailto:y2588952@gmail.com" class="contact-card reveal">
@@ -494,7 +494,6 @@
             const toggle = document.getElementById('themeToggle');
             const STORAGE_KEY = 'portfolio-theme';
 
-            // Determine initial theme: localStorage > system > light
             function getInitialTheme() {
                 const stored = localStorage.getItem(STORAGE_KEY);
                 if (stored === 'dark' || stored === 'light') return stored;
@@ -514,12 +513,10 @@
                 setTimeout(() => html.classList.remove('transitioning'), 500);
             }
 
-            // Init
             const initial = getInitialTheme();
             applyTheme(initial);
             localStorage.setItem(STORAGE_KEY, initial);
 
-            // Toggle click
             toggle.addEventListener('click', () => {
                 enableTransition();
                 const isDark = html.hasAttribute('data-theme');
@@ -528,7 +525,6 @@
                 localStorage.setItem(STORAGE_KEY, next);
             });
 
-            // Listen for system theme changes (only if user hasn't explicitly set)
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
                 if (!localStorage.getItem(STORAGE_KEY)) {
                     enableTransition();
@@ -537,20 +533,171 @@
             });
         })();
 
-        // ===== Scroll Reveal =====
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-        );
+        // ===== Comprehensive Scroll Animation System =====
+        (function () {
+            // ── 1. Intersection Observer for reveal animations ──
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
 
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+                            // Handle stagger container: reveal children in sequence
+                            if (el.hasAttribute('data-stagger')) {
+                                const delay = parseInt(el.getAttribute('data-stagger')) || 60;
+                                const children = el.querySelectorAll('[data-anim], .reveal');
+                                children.forEach((child, i) => {
+                                    child.style.transitionDelay = (i * delay) + 'ms';
+                                    child.classList.add('revealed');
+                                });
+                                el.classList.add('revealed');
+                            } else {
+                                // Apply delay from data-delay attribute if present
+                                const d = el.getAttribute('data-delay');
+                                if (d) el.style.transitionDelay = d + 'ms';
+                                el.classList.add('revealed');
+                            }
+
+                            revealObserver.unobserve(el);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
+            );
+
+            // Observe all elements with data-anim or .reveal (not inside stagger containers)
+            document.querySelectorAll('[data-anim], .reveal').forEach((el) => {
+                // Skip children of stagger containers — they're handled by the parent
+                if (!el.parentElement || !el.parentElement.hasAttribute('data-stagger')) {
+                    revealObserver.observe(el);
+                }
+            });
+
+            // Observe stagger containers
+            document.querySelectorAll('[data-stagger]').forEach((el) => {
+                revealObserver.observe(el);
+            });
+
+            // ── 2. Image fade-in ──
+            const imgObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            imgObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document.querySelectorAll('img.anim-img').forEach((img) => {
+                // If already loaded (cached), show immediately
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', () => img.classList.add('loaded'));
+                }
+                imgObserver.observe(img);
+            });
+
+            // ── 3. Button ripple effect ──
+            document.addEventListener('click', function (e) {
+                const rippleEl = e.target.closest(
+                    '.btn, .project-link, .social-icon, .theme-toggle, .contact-card'
+                );
+                if (!rippleEl) return;
+
+                const ripple = document.createElement('span');
+                ripple.className = 'btn-ripple';
+                const rect = rippleEl.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                rippleEl.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => ripple.remove());
+            });
+
+            // ── 4. Active nav link on scroll ──
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            const scrollSpy = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach((link) => {
+                                link.classList.toggle(
+                                    'nav-active',
+                                    link.getAttribute('href') === '#' + entry.target.id
+                                );
+                            });
+                        }
+                    });
+                },
+                { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' }
+            );
+
+            sections.forEach((s) => scrollSpy.observe(s));
+
+            // ── 5. Subtle parallax on Hero ──
+            const parallaxEls = document.querySelectorAll('.parallax');
+            let ticking = false;
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollY = window.pageYOffset;
+                        parallaxEls.forEach((el) => {
+                            const speed = parseFloat(el.getAttribute('data-speed')) || 0.08;
+                            const y = scrollY * speed;
+                            if (y < 120) {
+                                el.style.transform = `translateY(${y}px)`;
+                            }
+                        });
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // ── 6. Smooth section counter animation ──
+            const counterObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseInt(el.getAttribute('data-count'));
+                            const duration = parseInt(el.getAttribute('data-duration')) || 1600;
+                            const start = performance.now();
+
+                            function update(now) {
+                                const elapsed = now - start;
+                                const progress = Math.min(elapsed / duration, 1);
+                                // ease-out
+                                const eased = 1 - Math.pow(1 - progress, 3);
+                                el.textContent = Math.floor(eased * target);
+                                if (progress < 1) {
+                                    requestAnimationFrame(update);
+                                } else {
+                                    el.textContent = target;
+                                }
+                            }
+
+                            requestAnimationFrame(update);
+                            counterObserver.unobserve(el);
+                        }
+                    });
+                },
+                { threshold: 0.5 }
+            );
+
+            document.querySelectorAll('[data-count]').forEach((el) => {
+                counterObserver.observe(el);
+            });
+        })();
     </script>
 
 </body>
