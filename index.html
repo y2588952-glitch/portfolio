@@ -82,61 +82,76 @@
 
         <!-- 关于我 -->
         <section class="about" id="about">
-            <div class="about-header reveal">
-                <span class="section-label">About Me</span>
-                <h2>关于我</h2>
-            </div>
-
             <div class="about-body">
                 <!-- 左侧：头像 -->
-                <div class="about-avatar reveal">
-                    <div class="about-avatar-ring">
+                <aside class="about-left reveal">
+                    <div class="about-avatar-wrap">
+                        <div class="about-avatar-glow"></div>
                         <img src="11.jpg" alt="个人头像">
                     </div>
-                    <div class="about-avatar-info">
-                        <span class="about-name">亦 Yi</span>
-                        <span class="about-role">Frontend Developer · AI Learner</span>
+                    <div class="about-meta">
+                        <span class="about-meta-name">亦 Yi</span>
+                        <span class="about-meta-role">Frontend Developer</span>
+                        <span class="about-meta-loc">📍 成都</span>
                     </div>
-                </div>
+                </aside>
 
-                <!-- 右侧：介绍 -->
-                <div class="about-content">
-                    <p class="reveal">
-                        大家好，我是<strong>亦</strong>，2025届四川民族学院计算机科学与技术专业毕业生。
-                        曾在银行网点担任客服经理（实习），后从事青少年编程教学，
-                        在教授 Scratch 和 Python 的过程中坚定了对技术的热爱。
-                        目前在成都，专注于前端开发和 AI 应用开发，
-                        希望进入一家注重成长与创新的团队，持续精进。
+                <!-- 右侧：介绍 + 信息 -->
+                <div class="about-right">
+                    <span class="section-eyebrow reveal">About Me</span>
+                    <h2 class="reveal">关于我</h2>
+
+                    <p class="about-bio reveal">
+                        大家好，我是<strong>亦</strong>。2025 年毕业于四川民族学院计算机科学与技术专业。
+                        曾在银行担任客服经理（实习），后成为青少年编程教师，
+                        在 Scratch 和 Python 教学中点燃了对技术的持久热情。
+                        目前专注于<strong>前端工程化</strong>和<strong>AI 应用开发</strong>，
+                        享受将创意转化为简洁好用的产品。
                     </p>
 
-                    <!-- 信息卡片网格 -->
-                    <div class="about-grid">
-                        <div class="about-card reveal">
-                            <div class="about-card-icon">🎓</div>
-                            <h4>教育背景</h4>
-                            <p>四川民族学院</p>
-                            <span>计算机科学与技术 · 2021–2025</span>
+                    <div class="about-details">
+                        <div class="about-detail reveal">
+                            <span class="about-detail-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+                            </span>
+                            <div>
+                                <h4>教育背景</h4>
+                                <p>四川民族学院</p>
+                                <span>计算机科学与技术 · 2021–2025</span>
+                            </div>
                         </div>
 
-                        <div class="about-card reveal">
-                            <div class="about-card-icon">🎯</div>
-                            <h4>兴趣爱好</h4>
-                            <p>开源探索 · 摄影</p>
-                            <span>喜欢用代码构建实用工具，用镜头记录生活瞬间</span>
+                        <div class="about-detail reveal">
+                            <span class="about-detail-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </span>
+                            <div>
+                                <h4>兴趣爱好</h4>
+                                <p>开源探索 · 摄影 · 旅行</p>
+                                <span>用代码构建实用工具，用镜头捕捉生活瞬间</span>
+                            </div>
                         </div>
 
-                        <div class="about-card reveal">
-                            <div class="about-card-icon">📚</div>
-                            <h4>学习方向</h4>
-                            <p>前端工程化 · AI 应用</p>
-                            <span>深入 React/Next.js 生态，探索 LLM 与 Agent 开发</span>
+                        <div class="about-detail reveal">
+                            <span class="about-detail-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                            </span>
+                            <div>
+                                <h4>学习方向</h4>
+                                <p>前端工程化 · AI 应用开发</p>
+                                <span>深入 React / Next.js 生态，探索 LLM 与 Agent</span>
+                            </div>
                         </div>
 
-                        <div class="about-card reveal">
-                            <div class="about-card-icon">🚀</div>
-                            <h4>未来目标</h4>
-                            <p>成为全栈 AI 工程师</p>
-                            <span>三年内独立交付端到端 AI 产品，在技术社区持续输出</span>
+                        <div class="about-detail reveal">
+                            <span class="about-detail-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            </span>
+                            <div>
+                                <h4>未来目标</h4>
+                                <p>成为全栈 AI 工程师</p>
+                                <span>三年内独立交付端到端 AI 产品，持续技术输出</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -282,70 +282,52 @@ nav a:hover {
 /* ===== About Section ===== */
 .about {
     margin-top: 32px;
-    padding: 56px 48px;
+    padding: 72px 64px;
     background: var(--surface);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-light);
 }
 
-.about-header {
-    text-align: center;
-    margin-bottom: 48px;
-}
-
-.section-label {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--accent);
-    background: var(--accent-light);
-    padding: 4px 12px;
-    border-radius: 4px;
-    margin-bottom: 12px;
-}
-
-.about-header h2 {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.8px;
-    color: var(--text);
-}
-
-/* Two-column body */
 .about-body {
     display: flex;
-    gap: 64px;
+    gap: 80px;
     align-items: flex-start;
 }
 
-/* Left — Avatar */
-.about-avatar {
+/* ---- Left: Avatar ---- */
+.about-left {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
-.about-avatar-ring {
+.about-avatar-wrap {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
 }
 
-.about-avatar-ring::before {
-    content: '';
+.about-avatar-glow {
     position: absolute;
-    inset: -8px;
+    inset: -6px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(99, 102, 241, 0.1));
-    z-index: 0;
+    background: conic-gradient(
+        from 0deg,
+        rgba(37, 99, 235, 0.15),
+        rgba(99, 102, 241, 0.08),
+        rgba(37, 99, 235, 0.15)
+    );
+    animation: avatarGlow 6s linear infinite;
 }
 
-.about-avatar-ring img {
+@keyframes avatarGlow {
+    to { transform: rotate(360deg); }
+}
+
+.about-avatar-wrap img {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -353,101 +335,146 @@ nav a:hover {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid white;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
 }
 
-.about-avatar-info {
+.about-meta {
     text-align: center;
 }
 
-.about-avatar-info .about-name {
+.about-meta-name {
     display: block;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text);
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
 }
 
-.about-avatar-info .about-role {
+.about-meta-role {
+    display: block;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.about-meta-loc {
     display: block;
     font-size: 12px;
     color: var(--text-tertiary);
     margin-top: 2px;
-    letter-spacing: -0.1px;
 }
 
-/* Right — Content */
-.about-content {
+/* ---- Right: Content ---- */
+.about-right {
     flex: 1;
     min-width: 0;
 }
 
-.about-content > p {
+.section-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.about-right h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+    line-height: 1.15;
+}
+
+.about-bio {
     font-size: 15px;
-    line-height: 1.85;
+    line-height: 1.9;
     color: var(--text-secondary);
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    max-width: 520px;
     letter-spacing: -0.1px;
 }
 
-.about-content > p strong {
+.about-bio strong {
     color: var(--text);
     font-weight: 600;
 }
 
-/* Info cards grid */
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+/* ---- Detail list ---- */
+.about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border-light);
 }
 
-.about-card {
+.about-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.2s ease, padding-left 0.25s ease;
+    border-radius: 6px;
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.about-detail:hover {
     background: var(--bg);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    padding-left: 14px;
 }
 
-.about-card:hover {
-    box-shadow: var(--shadow);
-    border-color: var(--border);
-    transform: translateY(-2px);
+.about-detail-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
 }
 
-.about-card-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
+.about-detail:hover .about-detail-icon {
+    background: var(--accent-light);
+    color: var(--accent);
 }
 
-.about-card h4 {
+.about-detail h4 {
     font-size: 15px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 6px;
+    margin-bottom: 2px;
     letter-spacing: -0.2px;
 }
 
-.about-card p {
+.about-detail p {
     font-size: 14px;
     color: var(--text);
     font-weight: 500;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
-.about-card span {
+.about-detail span {
     font-size: 13px;
     color: var(--text-tertiary);
     line-height: 1.5;
 }
 
-/* ===== Scroll Reveal Animation ===== */
+/* ===== Scroll Reveal ===== */
 .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.revealed {
@@ -455,11 +482,14 @@ nav a:hover {
     transform: translateY(0);
 }
 
-/* Staggered delays for cards */
-.about-grid .reveal:nth-child(1) { transition-delay: 0.05s; }
-.about-grid .reveal:nth-child(2) { transition-delay: 0.12s; }
-.about-grid .reveal:nth-child(3) { transition-delay: 0.19s; }
-.about-grid .reveal:nth-child(4) { transition-delay: 0.26s; }
+/* staggered reveal */
+.about-right .reveal:nth-child(1) { transition-delay: 0.00s; }
+.about-right .reveal:nth-child(2) { transition-delay: 0.06s; }
+.about-right .reveal:nth-child(3) { transition-delay: 0.12s; }
+.about-details .reveal:nth-child(1) { transition-delay: 0.16s; }
+.about-details .reveal:nth-child(2) { transition-delay: 0.22s; }
+.about-details .reveal:nth-child(3) { transition-delay: 0.28s; }
+.about-details .reveal:nth-child(4) { transition-delay: 0.34s; }
 
 /* ===== Cards ===== */
 .card {
@@ -583,26 +613,37 @@ nav a:hover {
 
     /* About responsive */
     .about {
-        padding: 40px 24px;
+        padding: 48px 28px;
     }
 
     .about-body {
         flex-direction: column;
-        gap: 32px;
-        align-items: center;
+        gap: 36px;
     }
 
-    .about-avatar-ring {
-        width: 120px;
-        height: 120px;
+    .about-avatar-wrap {
+        width: 130px;
+        height: 130px;
     }
 
-    .about-content > p {
+    .about-bio {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .about-right h2 {
         text-align: center;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
+    .section-eyebrow {
+        display: block;
+        text-align: center;
+    }
+
+    .about-detail {
+        margin: 0 -4px;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 }
 
@@ -624,15 +665,15 @@ nav a:hover {
     }
 
     .about {
-        padding: 32px 16px;
+        padding: 36px 18px;
     }
 
-    .about-header h2 {
-        font-size: 26px;
+    .about-right h2 {
+        font-size: 28px;
     }
 
-    .about-avatar-ring {
-        width: 100px;
-        height: 100px;
+    .about-avatar-wrap {
+        width: 110px;
+        height: 110px;
     }
 }
