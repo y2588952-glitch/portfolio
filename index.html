@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -22,19 +22,28 @@
 
     </div>
 
-    <ul>
+    <div class="nav-right">
 
-        <li><a href="#">关于我</a></li>
+        <ul>
 
-        <li><a href="#">教育经历</a></li>
+            <li><a href="#">关于我</a></li>
 
-        <li><a href="#">项目</a></li>
+            <li><a href="#">教育经历</a></li>
 
-        <li><a href="#">技能</a></li>
+            <li><a href="#">项目</a></li>
 
-        <li><a href="#">联系我</a></li>
+            <li><a href="#">技能</a></li>
 
-    </ul>
+            <li><a href="#">联系我</a></li>
+
+        </ul>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+
+    </div>
 
 </nav>
     <div class="container">
@@ -479,7 +488,56 @@
     </div>
 
     <script>
-        // Scroll reveal animation
+        // ===== Theme Toggle =====
+        (function () {
+            const html = document.documentElement;
+            const toggle = document.getElementById('themeToggle');
+            const STORAGE_KEY = 'portfolio-theme';
+
+            // Determine initial theme: localStorage > system > light
+            function getInitialTheme() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored === 'dark' || stored === 'light') return stored;
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                } else {
+                    html.removeAttribute('data-theme');
+                }
+            }
+
+            function enableTransition() {
+                html.classList.add('transitioning');
+                setTimeout(() => html.classList.remove('transitioning'), 500);
+            }
+
+            // Init
+            const initial = getInitialTheme();
+            applyTheme(initial);
+            localStorage.setItem(STORAGE_KEY, initial);
+
+            // Toggle click
+            toggle.addEventListener('click', () => {
+                enableTransition();
+                const isDark = html.hasAttribute('data-theme');
+                const next = isDark ? 'light' : 'dark';
+                applyTheme(next);
+                localStorage.setItem(STORAGE_KEY, next);
+            });
+
+            // Listen for system theme changes (only if user hasn't explicitly set)
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem(STORAGE_KEY)) {
+                    enableTransition();
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        })();
+
+        // ===== Scroll Reveal =====
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
