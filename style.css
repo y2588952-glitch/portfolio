@@ -556,8 +556,7 @@ nav a:hover {
     font-size: 15px;
     line-height: 1.9;
     color: var(--text-secondary);
-    margin-bottom: 48px;
-    max-width: 520px;
+    margin-bottom: 40px;
     letter-spacing: -0.1px;
 }
 
@@ -566,69 +565,118 @@ nav a:hover {
     font-weight: 600;
 }
 
-/* ---- Detail list ---- */
-.about-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid var(--border-light);
+/* ---- Info cards grid ---- */
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
 }
 
-.about-detail {
+.about-card-item {
     display: flex;
     align-items: flex-start;
-    gap: 18px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--border-light);
-    transition: background 0.2s ease, padding-left 0.25s ease;
-    border-radius: 6px;
-    margin: 0 -8px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-.about-detail:hover {
+    gap: 16px;
+    padding: 20px 22px;
     background: var(--bg);
-    padding-left: 14px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s ease,
+                background 0.25s ease;
 }
 
-.about-detail-icon {
+.about-card-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+    border-color: var(--border);
+    background: var(--surface);
+}
+
+.about-card-icon {
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 10px;
-    background: var(--bg);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
-.about-detail:hover .about-detail-icon {
+.about-card-item:hover .about-card-icon {
     background: var(--accent-light);
     color: var(--accent);
+    border-color: var(--badge-border);
+    box-shadow: 0 4px 12px var(--accent-glow-light);
 }
 
-.about-detail h4 {
+.about-card-text h4 {
     font-size: 15px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     letter-spacing: -0.2px;
 }
 
-.about-detail p {
+.about-card-text p {
     font-size: 14px;
     color: var(--text);
     font-weight: 500;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
 }
 
-.about-detail span {
+.about-card-text span {
     font-size: 13px;
     color: var(--text-tertiary);
     line-height: 1.5;
+}
+
+/* ---- Learning Tags ---- */
+.about-learning {
+    padding: 24px;
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+}
+
+.about-learning-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+}
+
+.about-learning-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.about-learning-tags span {
+    display: inline-block;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid var(--badge-border);
+    border-radius: 100px;
+    letter-spacing: -0.1px;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.25s ease;
+}
+
+.about-learning-tags span:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 16px var(--accent-glow-light);
+    background: var(--surface);
 }
 
 /* ===== Timeline Section ===== */
@@ -810,15 +858,6 @@ nav a:hover {
     transform: translateY(0) translateX(0) scale(1);
     filter: blur(0);
 }
-
-/* --- Legacy staggered delays (preserved) --- */
-.about-right .reveal:nth-child(1) { transition-delay: 0.00s; }
-.about-right .reveal:nth-child(2) { transition-delay: 0.06s; }
-.about-right .reveal:nth-child(3) { transition-delay: 0.12s; }
-.about-details .reveal:nth-child(1) { transition-delay: 0.16s; }
-.about-details .reveal:nth-child(2) { transition-delay: 0.22s; }
-.about-details .reveal:nth-child(3) { transition-delay: 0.28s; }
-.about-details .reveal:nth-child(4) { transition-delay: 0.34s; }
 
 /* ===== Image Fade-in ===== */
 img.anim-img {
@@ -1382,7 +1421,6 @@ a.contact-card {
 
     .about-bio {
         text-align: center;
-        max-width: 100%;
     }
 
     .about-right h2 {
@@ -1394,10 +1432,17 @@ a.contact-card {
         text-align: center;
     }
 
-    .about-detail {
-        margin: 0 -4px;
-        padding-left: 4px;
-        padding-right: 4px;
+    .about-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .about-learning {
+        text-align: center;
+    }
+
+    .about-learning-tags {
+        justify-content: center;
     }
 
     /* Skills responsive */
@@ -1562,6 +1607,14 @@ a.contact-card {
     .about-avatar-wrap {
         width: 110px;
         height: 110px;
+    }
+
+    .about-card-item {
+        padding: 16px 18px;
+    }
+
+    .about-learning {
+        padding: 18px;
     }
 
     .skills-section {
