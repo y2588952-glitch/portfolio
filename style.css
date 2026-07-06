@@ -840,6 +840,53 @@ nav a.nav-active::after {
     background: var(--accent);
 }
 
+/* ===== Back to Top Button ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 0.3s ease,
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    background: var(--text);
+    color: var(--btn-text);
+    border-color: var(--text);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
 /* ===== Parallax-ready elements ===== */
 .hero-avatar img.parallax,
 .hero-name.parallax,
@@ -1522,6 +1569,13 @@ a.contact-card {
 
     .nav-right {
         gap: 6px;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
     }
 
     .hero-name {
