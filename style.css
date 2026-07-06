@@ -195,6 +195,30 @@ nav a:hover {
     padding: 0 24px 80px;
 }
 
+/* ===== Shared Section Style ===== */
+.section {
+    margin-top: 32px;
+    padding: 64px;
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+.section h2,
+.about-right h2 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+}
+
+.section .section-eyebrow {
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
 /* ===== Hero Section ===== */
 .hero {
     position: relative;
@@ -204,8 +228,6 @@ nav a:hover {
     text-align: center;
     padding: 80px 40px 64px;
     margin-top: 40px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
 }
@@ -385,12 +407,7 @@ nav a:hover {
 
 /* ===== About Section ===== */
 .about {
-    margin-top: 32px;
     padding: 72px 64px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
 }
 
 .about-body {
@@ -486,10 +503,6 @@ nav a:hover {
 }
 
 .about-right h2 {
-    font-size: 34px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -1px;
     margin-bottom: 24px;
     line-height: 1.15;
 }
@@ -574,26 +587,9 @@ nav a:hover {
 }
 
 /* ===== Timeline Section ===== */
-.timeline-section {
-    margin-top: 32px;
-    padding: 64px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-}
-
-.timeline-section .section-eyebrow {
-    display: block;
-    text-align: center;
-    margin-bottom: 8px;
-}
 
 .timeline-section h2 {
     text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -1px;
     margin-bottom: 56px;
 }
 
@@ -887,34 +883,24 @@ nav a.nav-active::after {
     transition: transform 0.1s ease;
 }
 
-/* ===== Parallax-ready elements ===== */
-.hero-avatar img.parallax,
+/* ===== Parallax & Focus ===== */
+.hero-avatar.parallax img,
 .hero-name.parallax,
 .hero-badge.parallax {
     will-change: transform;
 }
 
+/* Focus visible for accessibility */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
 /* ===== Contact Section ===== */
-.contact {
-    margin-top: 32px;
-    padding: 64px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-}
-
-.contact .section-eyebrow {
-    display: block;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
 .contact h2 {
     text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -1px;
     margin-bottom: 48px;
 }
 
@@ -999,73 +985,11 @@ a.contact-card {
     color: var(--text-tertiary);
 }
 
-/* Staggered */
-.contact-grid > .reveal:nth-child(1) { transition-delay: 0.00s; }
-.contact-grid > .reveal:nth-child(2) { transition-delay: 0.05s; }
-.contact-grid > .reveal:nth-child(3) { transition-delay: 0.10s; }
-.contact-grid > .reveal:nth-child(4) { transition-delay: 0.15s; }
-.contact-grid > .reveal:nth-child(5) { transition-delay: 0.20s; }
-
-/* ===== Cards ===== */
-.card {
-    background: var(--surface);
-    margin-top: 24px;
-    padding: 32px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-    transition: box-shadow 0.2s ease;
-}
-
-.card:hover {
-    box-shadow: var(--shadow);
-}
-
-.card h2 {
-    color: var(--text);
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 18px;
-    letter-spacing: -0.4px;
-}
-
-.card p {
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.75;
-}
-
-.card ul {
-    padding-left: 20px;
-    color: var(--text-secondary);
-}
-
-.card li {
-    margin-bottom: 8px;
-    font-size: 15px;
-}
+/* ===== Legacy card (unused, kept for safety) ===== */
 
 /* ===== Projects Section ===== */
-.projects {
-    margin-top: 32px;
-    padding: 64px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-}
-
-.projects .section-eyebrow {
-    display: block;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
 .projects h2 {
     text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -1px;
     margin-bottom: 48px;
 }
 
@@ -1197,32 +1121,9 @@ a.contact-card {
     background: var(--btn-outline-hover-bg);
 }
 
-/* Staggered reveal */
-.projects-grid > .reveal:nth-child(1) { transition-delay: 0.00s; }
-.projects-grid > .reveal:nth-child(2) { transition-delay: 0.10s; }
-.projects-grid > .reveal:nth-child(3) { transition-delay: 0.20s; }
-
 /* ===== Skills Section ===== */
-.skills-section {
-    margin-top: 32px;
-    padding: 64px;
-    background: var(--surface);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-light);
-}
-
-.skills-section .section-eyebrow {
-    display: block;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
 .skills-section h2 {
     text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -1px;
     margin-bottom: 48px;
 }
 
@@ -1276,7 +1177,7 @@ a.contact-card {
     background: var(--accent-light);
     color: var(--accent);
     border-color: var(--badge-border);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 4px 12px var(--accent-glow-light);
 }
 
 /* Info */
@@ -1318,13 +1219,13 @@ a.contact-card {
     height: 100%;
     width: var(--w);
     border-radius: 100px;
-    background: linear-gradient(90deg, var(--accent), #6366f1);
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
     transform-origin: left;
     transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .skill-card:hover .skill-fill {
-    background: linear-gradient(90deg, var(--accent-hover), #818cf8);
+    background: linear-gradient(90deg, #60a5fa, var(--accent-hover));
     box-shadow: 0 0 10px var(--skill-glow);
 }
 
@@ -1338,38 +1239,7 @@ a.contact-card {
     to   { transform: scaleX(1); }
 }
 
-/* Staggered reveal for cards */
-.skills-grid > .reveal:nth-child(1) { transition-delay: 0.00s; }
-.skills-grid > .reveal:nth-child(2) { transition-delay: 0.06s; }
-.skills-grid > .reveal:nth-child(3) { transition-delay: 0.12s; }
-.skills-grid > .reveal:nth-child(4) { transition-delay: 0.18s; }
-.skills-grid > .reveal:nth-child(5) { transition-delay: 0.24s; }
-.skills-grid > .reveal:nth-child(6) { transition-delay: 0.30s; }
-
-/* ===== Skills Tags (legacy) ===== */
-.skills {
-    margin-top: 16px;
-}
-
-.skills span {
-    display: inline-block;
-    background: var(--bg);
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 6px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    border: 1px solid var(--border);
-    transition: all 0.2s ease;
-}
-
-.skills span:hover {
-    color: var(--text);
-    border-color: #d1d5db;
-    background: var(--surface);
-}
+/* ===== Legacy skills tags (unused) ===== */
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
@@ -1533,22 +1403,25 @@ a.contact-card {
     }
 
     /* Contact responsive */
-    .contact {
-        padding: 44px 24px;
-    }
-
     .contact h2 {
-        font-size: 28px;
         margin-bottom: 36px;
     }
 
     .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
     .contact-card {
         padding: 24px 14px;
+    }
+
+    .section {
+        padding: 44px 24px;
+    }
+
+    .section h2 {
+        font-size: 28px;
     }
 }
 
@@ -1649,21 +1522,20 @@ a.contact-card {
         padding: 18px;
     }
 
-    /* Contact responsive */
-    .contact {
+    .section {
         padding: 32px 16px;
     }
 
-    .contact h2 {
+    .section h2 {
         font-size: 26px;
     }
 
     .contact-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
 
     .contact-card {
-        padding: 24px 14px;
+        padding: 20px 12px;
     }
 }
