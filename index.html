@@ -3,52 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="亦 Yi — Frontend Developer & AI Learner，个人作品集网站">
-    <meta property="og:title" content="亦 | Personal Portfolio">
-    <meta property="og:description" content="Frontend Developer / AI Learner — 个人作品集">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ===== 基础 SEO ===== -->
+    <meta name="description" content="亦 Yi — 计算机科学与技术应届毕业生，专注于前端工程化与 AI 应用开发。个人作品集展示项目、技能与经历。">
+    <meta name="keywords" content="前端开发, AI, 个人作品集, Frontend Developer, Portfolio, 简历, JavaScript, React">
+    <meta name="author" content="亦 Yi">
+    <meta name="robots" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ===== 浏览器主题色 ===== -->
+    <meta name="theme-color" content="#f9fafb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="msapplication-TileColor" content="#2563eb">
+
+    <!-- ===== Open Graph（Facebook / LinkedIn / Discord 等）===== -->
+    <meta property="og:title" content="亦 Yi — Frontend Developer & AI Learner">
+    <meta property="og:description" content="计算机科学与技术应届毕业生，专注于前端工程化与 AI 应用开发。查看我的项目、技能与经历。">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://portfolio-kohl-beta-zit57zqdmb.vercel.app">
+    <meta property="og:image" content="https://portfolio-kohl-beta-zit57zqdmb.vercel.app/11.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="亦 Yi 个人头像">
+    <meta property="og:site_name" content="亦 | Personal Portfolio">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- ===== Twitter Card ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="亦 Yi — Frontend Developer & AI Learner">
+    <meta name="twitter:description" content="计算机科学与技术应届毕业生，专注于前端工程化与 AI 应用开发。">
+    <meta name="twitter:image" content="https://portfolio-kohl-beta-zit57zqdmb.vercel.app/11.jpg">
+    <meta name="twitter:image:alt" content="亦 Yi 个人头像">
+
+    <!-- ===== Canonical & Icons ===== -->
+    <link rel="canonical" href="https://portfolio-kohl-beta-zit57zqdmb.vercel.app">
+    <!-- 预加载头像图片（LCP 元素），减少首屏加载时间 -->
+    <link rel="preload" as="image" href="11.jpg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="11.jpg">
+
     <title>亦 | Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- 暗色模式预检：在 CSS 渲染前设置 data-theme，消除亮→暗闪烁 -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('portfolio-theme');
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
+
+    <!-- JSON-LD 结构化数据（SEO） -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "亦 Yi",
+        "givenName": "Yi",
+        "familyName": "Yi",
+        "url": "https://portfolio-kohl-beta-zit57zqdmb.vercel.app",
+        "image": "https://portfolio-kohl-beta-zit57zqdmb.vercel.app/11.jpg",
+        "jobTitle": "Frontend Developer",
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "四川民族学院"
+        },
+        "knowsAbout": ["HTML", "CSS", "JavaScript", "React", "AI", "C++"],
+        "sameAs": [
+            "https://github.com/y2588952-glitch",
+            "https://linkedin.com/in/y2588952"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "成都",
+            "addressCountry": "中国"
+        },
+        "email": "y2588952@gmail.com"
+    }
+    </script>
 </head>
 
 <body>
-<nav>
 
+    <!-- 无障碍：键盘用户跳过导航，直达主内容 -->
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
+
+    <!-- ==================== Loading 动画 ==================== -->
+    <div id="loading-screen" class="loading-screen" role="status" aria-label="页面加载中">
+        <div class="loading-content">
+            <span class="loading-icon">💻</span>
+            <h2 class="loading-name">亦 Yi</h2>
+            <p class="loading-text">Loading<span class="loading-dots"></span></p>
+        </div>
+    </div>
+
+<nav>
     <a href="#" class="logo" aria-label="返回首页">Yi Portfolio</a>
 
     <div class="nav-right">
-
         <ul>
-
             <li><a href="#about">关于我</a></li>
-
             <li><a href="#education">教育经历</a></li>
-
             <li><a href="#projects">项目</a></li>
-
             <li><a href="#skills">技能</a></li>
-
             <li><a href="#contact">联系我</a></li>
-
         </ul>
 
         <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
             <span class="icon-sun">☀️</span>
             <span class="icon-moon">🌙</span>
         </button>
-
     </div>
-
 </nav>
     <div class="container">
 
-        <!-- Hero区域 -->
-        <section class="hero section hero-animate" id="hero">
+        <!-- ==================== Header：Hero 区域 ==================== -->
+        <header>
+            <section class="hero section hero-animate" id="hero" data-scroll="fade-up">
             <span class="hero-welcome">Welcome to my portfolio</span>
 
             <div class="hero-avatar parallax" data-speed="0.05">
-                <img src="11.jpg" alt="个人头像" class="anim-img">
+                <img src="11.jpg" alt="个人头像" class="anim-img" width="110" height="110">
             </div>
 
             <h1 class="hero-name">亦 <span class="hero-name-en">Yi</span></h1>
@@ -63,11 +139,11 @@
             </p>
 
             <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">
+                <a href="#projects" class="btn btn-primary" data-scroll-to="projects">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="10" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="10" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
                     View Projects
                 </a>
-                <a href="#contact" class="btn btn-outline">
+                <a href="#contact" class="btn btn-outline" data-scroll-to="contact">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="2.5" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
                     Contact Me
                 </a>
@@ -85,15 +161,18 @@
                 </a>
             </div>
         </section>
+        </header>
 
-        <!-- 关于我 -->
-        <section class="about section" id="about">
+        <!-- ==================== Main：主要内容区域 ==================== -->
+        <main id="main-content">
+            <!-- 关于我 -->
+            <section class="about section" id="about" data-scroll="fade-left">
             <div class="about-body">
                 <!-- 左侧：头像 -->
                 <aside class="about-left reveal">
                     <div class="about-avatar-wrap">
                         <div class="about-avatar-glow"></div>
-                        <img src="11.jpg" alt="个人头像" class="anim-img">
+                        <img src="11.jpg" alt="个人头像" class="anim-img" width="180" height="180" loading="lazy">
                     </div>
                     <div class="about-meta">
                         <span class="about-meta-name">亦 Yi</span>
@@ -117,57 +196,57 @@
 
                     <div class="about-cards" data-stagger="80">
                         <!-- 教育背景 -->
-                        <div class="about-card-item reveal">
+                        <article class="about-card-item reveal">
                             <div class="about-card-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
                             </div>
                             <div class="about-card-text">
-                                <h4>教育背景</h4>
+                                <h3>教育背景</h3>
                                 <p>四川民族学院</p>
                                 <span>计算机科学与技术 · 本科 · 2021–2025</span>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- 个人介绍 -->
-                        <div class="about-card-item reveal">
+                        <article class="about-card-item reveal">
                             <div class="about-card-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
                             </div>
                             <div class="about-card-text">
-                                <h4>个人介绍</h4>
+                                <h3>个人介绍</h3>
                                 <p>应届毕业生 · 编程教师经历</p>
                                 <span>从金融机构实习到教育一线，始终热爱技术与创造</span>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- 兴趣爱好 -->
-                        <div class="about-card-item reveal">
+                        <article class="about-card-item reveal">
                             <div class="about-card-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                             </div>
                             <div class="about-card-text">
-                                <h4>兴趣爱好</h4>
+                                <h3>兴趣爱好</h3>
                                 <p>开源探索 · 摄影 · 旅行</p>
                                 <span>用代码构建实用工具，用镜头捕捉生活瞬间</span>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- 未来目标 -->
-                        <div class="about-card-item reveal">
+                        <article class="about-card-item reveal">
                             <div class="about-card-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                             </div>
                             <div class="about-card-text">
-                                <h4>未来目标</h4>
+                                <h3>未来目标</h3>
                                 <p>成为全栈 AI 工程师</p>
                                 <span>三年内独立交付端到端 AI 产品，持续技术输出</span>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
                     <!-- 正在学习 -->
                     <div class="about-learning reveal">
-                        <h4 class="about-learning-title">📚 目前正在学习</h4>
+                        <h3 class="about-learning-title">📚 目前正在学习</h3>
                         <div class="about-learning-tags">
                             <span>HTML</span>
                             <span>CSS</span>
@@ -181,7 +260,7 @@
         </section>
 
         <!-- 时间轴 -->
-        <section class="timeline-section section" id="education">
+        <section class="timeline-section section" id="education" data-scroll="fade-right">
             <span class="section-eyebrow reveal">Journey</span>
             <h2 class="reveal">教育 & 经历</h2>
 
@@ -205,9 +284,9 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
                     </div>
                     <div class="timeline-card">
-                        <span class="timeline-date">2024.06 — 2024.12</span>
+                        <span class="timeline-date">2024.03 — 2024.05</span>
                         <h3>银行客服经理（实习）</h3>
-                        <p>某商业银行 · 成都</p>
+                        <p>某商业银行 · 泸州</p>
                         <span class="timeline-desc">负责客户接待、业务咨询及客户服务，锻炼了沟通能力和服务意识。</span>
                     </div>
                 </div>
@@ -218,9 +297,9 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     </div>
                     <div class="timeline-card">
-                        <span class="timeline-date">2025.01 — 至今</span>
+                        <span class="timeline-date">2026.01 — 至今</span>
                         <h3>青少年编程教师</h3>
-                        <p>编程教育机构 · 成都</p>
+                        <p>编程教育机构 · 泸州</p>
                         <span class="timeline-desc">负责 Scratch、Python 基础课程教学，培养学生编程思维，在教学过程中坚定了对技术的热爱。</span>
                     </div>
                 </div>
@@ -231,7 +310,7 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
                     <div class="timeline-card timeline-card-highlight">
-                        <span class="timeline-date">2025 — 未来</span>
+                        <span class="timeline-date">2026 — 未来</span>
                         <h3>向 AI 全栈工程师迈进 🚀</h3>
                         <p>自主学习 · 持续成长</p>
                         <span class="timeline-desc">深度学习前端工程化与 AI 应用开发，目标是独立交付端到端 AI 产品。</span>
@@ -241,14 +320,14 @@
         </section>
 
         <!-- 项目 -->
-        <section class="projects section" id="projects">
+        <section class="projects section" id="projects" data-scroll="fade-left">
             <span class="section-eyebrow reveal">Projects</span>
             <h2 class="reveal">项目作品</h2>
 
             <div class="projects-grid" data-stagger="100">
 
                 <!-- 项目 1 -->
-                <div class="project-card reveal">
+                <article class="project-card reveal">
                     <div class="project-image">
                         <div class="project-img-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -273,10 +352,10 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 <!-- 项目 2 -->
-                <div class="project-card reveal">
+                <article class="project-card reveal">
                     <div class="project-image">
                         <div class="project-img-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 8h10M7 12h6M7 16h3"/></svg>
@@ -295,16 +374,16 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                 GitHub
                             </a>
-                            <a href="#" class="project-link project-link-live" style="pointer-events:none;opacity:0.5">
+                            <a href="#" class="project-link project-link-live project-link-disabled" aria-disabled="true">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                                 控制台应用
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 <!-- 项目 3 -->
-                <div class="project-card reveal">
+                <article class="project-card reveal">
                     <div class="project-image">
                         <div class="project-img-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M8 12a4 4 0 108 0"/></svg>
@@ -323,19 +402,19 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                 GitHub
                             </a>
-                            <a href="#" class="project-link project-link-live" style="pointer-events:none;opacity:0.5">
+                            <a href="#" class="project-link project-link-live project-link-disabled" aria-disabled="true">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                                 开发中
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
             </div>
         </section>
 
         <!-- 技能 -->
-        <section class="skills-section section" id="skills">
+        <section class="skills-section section" id="skills" data-scroll="fade-right">
             <span class="section-eyebrow reveal">Skills</span>
             <h2 class="reveal">技术栈</h2>
 
@@ -347,7 +426,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>HTML / CSS</h4>
+                            <h3>HTML / CSS</h3>
                             <span>90%</span>
                         </div>
                         <div class="skill-bar">
@@ -363,7 +442,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>JavaScript</h4>
+                            <h3>JavaScript</h3>
                             <span>55%</span>
                         </div>
                         <div class="skill-bar">
@@ -379,7 +458,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>React / Next.js</h4>
+                            <h3>React / Next.js</h3>
                             <span>40%</span>
                         </div>
                         <div class="skill-bar">
@@ -395,7 +474,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>C++</h4>
+                            <h3>C++</h3>
                             <span>65%</span>
                         </div>
                         <div class="skill-bar">
@@ -411,7 +490,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>AI / Claude Code</h4>
+                            <h3>AI / Claude Code</h3>
                             <span>70%</span>
                         </div>
                         <div class="skill-bar">
@@ -427,7 +506,7 @@
                     </div>
                     <div class="skill-info">
                         <div class="skill-head">
-                            <h4>Git / GitHub</h4>
+                            <h3>Git / GitHub</h3>
                             <span>50%</span>
                         </div>
                         <div class="skill-bar">
@@ -439,7 +518,7 @@
         </section>
 
         <!-- 联系方式 -->
-        <section class="contact section" id="contact">
+        <section class="contact section" id="contact" data-scroll="fade-up">
             <span class="section-eyebrow reveal">Contact</span>
             <h2 class="reveal">联系我</h2>
 
@@ -450,7 +529,7 @@
                     <div class="contact-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
                     </div>
-                    <h4>Email</h4>
+                    <h3>Email</h3>
                     <span>y2588952@gmail.com</span>
                     <small>随时联系，24小时内回复</small>
                 </a>
@@ -460,7 +539,7 @@
                     <div class="contact-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     </div>
-                    <h4>GitHub</h4>
+                    <h3>GitHub</h3>
                     <span>y2588952-glitch</span>
                     <small>查看我的开源项目</small>
                 </a>
@@ -470,7 +549,7 @@
                     <div class="contact-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </div>
-                    <h4>LinkedIn</h4>
+                    <h3>LinkedIn</h3>
                     <span>y2588952</span>
                     <small>连接我的职业网络</small>
                 </a>
@@ -480,7 +559,7 @@
                     <div class="contact-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     </div>
-                    <h4>Location</h4>
+                    <h3>Location</h3>
                     <span>中国 · 成都</span>
                     <small>欢迎随时线下交流</small>
                 </div>
@@ -490,13 +569,15 @@
                     <div class="contact-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.9c3.7 0 6.6 2.5 7.1 5.7.1.6.4 1.2.9 1.5.6.4 1.5.6 2.3.4 1.3-.3 2.4-1 3.2-2 .7-.9 1.1-2.1 1.1-3.3 0-3.5-3.2-6.3-7.1-6.3-2.5 0-4.7 1.1-5.9 2.9"/><path d="M2 15.5c0 2.2 1.5 4.2 3.7 5.1.3.1.6.3.6.6l-.1 1.3c0 .3.3.5.6.4l1.5-.7c.2-.1.5-.1.7 0 1.2.5 2.5.8 3.8.6 1.5-.2 2.8-.9 3.7-1.9"/></svg>
                     </div>
-                    <h4>WeChat</h4>
+                    <h3>WeChat</h3>
                     <span>y2588952</span>
                     <small>添加请备注来意</small>
                 </div>
 
             </div>
         </section>
+
+        </main>
 
     </div>
 
@@ -505,245 +586,8 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
 
-    <script>
-        // ===== Theme Toggle =====
-        (function () {
-            const html = document.documentElement;
-            const toggle = document.getElementById('themeToggle');
-            if (!toggle) return;
-            const STORAGE_KEY = 'portfolio-theme';
-
-            function getInitialTheme() {
-                var stored = localStorage.getItem(STORAGE_KEY);
-                if (stored === 'dark' || stored === 'light') return stored;
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-
-            function applyTheme(theme) {
-                if (theme === 'dark') {
-                    html.setAttribute('data-theme', 'dark');
-                } else {
-                    html.removeAttribute('data-theme');
-                }
-            }
-
-            function enableTransition() {
-                html.classList.add('transitioning');
-                setTimeout(function () { html.classList.remove('transitioning'); }, 500);
-            }
-
-            var initial = getInitialTheme();
-            applyTheme(initial);
-            localStorage.setItem(STORAGE_KEY, initial);
-
-            toggle.addEventListener('click', function () {
-                enableTransition();
-                var isDark = html.hasAttribute('data-theme');
-                var next = isDark ? 'light' : 'dark';
-                applyTheme(next);
-                localStorage.setItem(STORAGE_KEY, next);
-            });
-
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-                if (!localStorage.getItem(STORAGE_KEY)) {
-                    enableTransition();
-                    applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-        })();
-
-        // ===== Hero Entrance Animation =====
-        (function () {
-            var hero = document.querySelector('.hero-animate');
-            if (hero) {
-                // Trigger after a tiny delay so the browser paints the initial state first
-                requestAnimationFrame(function () {
-                    requestAnimationFrame(function () {
-                        hero.classList.add('entered');
-                    });
-                });
-            }
-        })();
-
-        // ===== Scroll Animation System =====
-        (function () {
-            // ── 1. Reveal animations ──
-            var revealObserver = new IntersectionObserver(
-                function (entries) {
-                    entries.forEach(function (entry) {
-                        if (!entry.isIntersecting) return;
-                        var el = entry.target;
-
-                        if (el.hasAttribute('data-stagger')) {
-                            var delay = parseInt(el.getAttribute('data-stagger')) || 60;
-                            var children = el.querySelectorAll('[data-anim], .reveal');
-                            children.forEach(function (child, i) {
-                                child.style.transitionDelay = (i * delay) + 'ms';
-                                child.classList.add('revealed');
-                            });
-                            el.classList.add('revealed');
-                        } else {
-                            var d = el.getAttribute('data-delay');
-                            if (d) el.style.transitionDelay = d + 'ms';
-                            el.classList.add('revealed');
-                        }
-
-                        revealObserver.unobserve(el);
-                    });
-                },
-                { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
-            );
-
-            document.querySelectorAll('[data-anim], .reveal').forEach(function (el) {
-                if (!el.parentElement || !el.parentElement.hasAttribute('data-stagger')) {
-                    revealObserver.observe(el);
-                }
-            });
-
-            document.querySelectorAll('[data-stagger]').forEach(function (el) {
-                revealObserver.observe(el);
-            });
-
-            // ── 2. Image fade-in ──
-            var imgObserver = new IntersectionObserver(
-                function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('loaded');
-                            imgObserver.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            document.querySelectorAll('img.anim-img').forEach(function (img) {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                } else {
-                    img.addEventListener('load', function () { img.classList.add('loaded'); });
-                }
-                imgObserver.observe(img);
-            });
-
-            // ── 3. Button ripple ──
-            document.addEventListener('click', function (e) {
-                var rippleEl = e.target.closest(
-                    '.btn, .project-link, .social-icon, .theme-toggle, .contact-card'
-                );
-                if (!rippleEl) return;
-
-                var ripple = document.createElement('span');
-                ripple.className = 'btn-ripple';
-                var rect = rippleEl.getBoundingClientRect();
-                var size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-                rippleEl.appendChild(ripple);
-
-                ripple.addEventListener('animationend', function () { ripple.remove(); });
-            });
-
-            // ── 4. Scroll Spy (active nav link) ──
-            var sections = document.querySelectorAll('section[id]');
-            var navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-            if (sections.length && navLinks.length) {
-                var scrollSpy = new IntersectionObserver(
-                    function (entries) {
-                        var activeId = null;
-                        entries.forEach(function (entry) {
-                            if (entry.isIntersecting) {
-                                activeId = entry.target.id;
-                            }
-                        });
-                        if (activeId) {
-                            navLinks.forEach(function (link) {
-                                var isActive = link.getAttribute('href') === '#' + activeId;
-                                link.classList.toggle('nav-active', isActive);
-                            });
-                        }
-                    },
-                    { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' }
-                );
-
-                sections.forEach(function (s) { scrollSpy.observe(s); });
-            }
-
-            // ── 5. Unified scroll handler (parallax + back-to-top) ──
-            var parallaxEls = document.querySelectorAll('.parallax');
-            var backToTop = document.getElementById('backToTop');
-            var scrollTicking = false;
-
-            window.addEventListener('scroll', function () {
-                if (scrollTicking) return;
-                scrollTicking = true;
-
-                requestAnimationFrame(function () {
-                    var y = window.scrollY;
-
-                    // Parallax
-                    parallaxEls.forEach(function (el) {
-                        if (el.classList.contains('revealed') || !el.classList.contains('reveal')) {
-                            var speed = parseFloat(el.getAttribute('data-speed')) || 0.08;
-                            var shift = y * speed;
-                            if (shift < 120) {
-                                el.style.transform = 'translateY(' + shift + 'px)';
-                            }
-                        }
-                    });
-
-                    // Back to Top
-                    if (backToTop) {
-                        backToTop.classList.toggle('visible', y > 300);
-                    }
-
-                    scrollTicking = false;
-                });
-            }, { passive: true });
-
-            // Back to Top click
-            if (backToTop) {
-                backToTop.addEventListener('click', function () {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-
-            // ── 6. Counter animation ──
-            var counterObserver = new IntersectionObserver(
-                function (entries) {
-                    entries.forEach(function (entry) {
-                        if (!entry.isIntersecting) return;
-                        var el = entry.target;
-                        var target = parseInt(el.getAttribute('data-count'));
-                        var duration = parseInt(el.getAttribute('data-duration')) || 1600;
-                        var start = performance.now();
-
-                        function update(now) {
-                            var elapsed = now - start;
-                            var progress = Math.min(elapsed / duration, 1);
-                            var eased = 1 - Math.pow(1 - progress, 3);
-                            el.textContent = Math.floor(eased * target);
-                            if (progress < 1) {
-                                requestAnimationFrame(update);
-                            } else {
-                                el.textContent = target;
-                            }
-                        }
-
-                        requestAnimationFrame(update);
-                        counterObserver.unobserve(el);
-                    });
-                },
-                { threshold: 0.5 }
-            );
-
-            document.querySelectorAll('[data-count]').forEach(function (el) {
-                counterObserver.observe(el);
-            });
-        })();
-    </script>
+    <!-- 主脚本：导航交互、主题切换、滚动动画等 -->
+    <script src="script.js"></script>
 
 </body>
 

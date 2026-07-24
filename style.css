@@ -8,74 +8,186 @@
 }
 
 :root {
-    /* Light theme (default) */
-    --bg: #f9fafb;
-    --surface: #ffffff;
-    --text: #111827;
-    --text-secondary: #6b7280;
-    --text-tertiary: #9ca3af;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --accent-light: #eff6ff;
-    --border: #e5e7eb;
-    --border-light: #f3f4f6;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.06);
-    /* Extended */
-    --nav-bg: rgba(255, 255, 255, 0.72);
-    --btn-text: #ffffff;
-    --btn-hover-bg: #1f2937;
-    --btn-outline-hover-bg: #f9fafb;
+    /* ================================================================
+     * 设计令牌 (Design Tokens) —— 亮色主题（默认）
+     * ================================================================
+     * 所有颜色、阴影、间距、字号均通过变量管理。
+     * 修改变量值即可全局替换，无需逐行查找。
+     * ================================================================ */
+
+    /* ---- 主色调 ---- */
+    --accent:                #2563eb;
+    --accent-hover:          #1d4ed8;
+    --accent-light:          #eff6ff;
+    --accent-glow-color:     #60a5fa;   /* 技能条 hover 渐变辅助色 */
+
+    /* ---- 背景 ---- */
+    --bg:                    #f9fafb;
+    --surface:               #ffffff;
+    --nav-bg:                rgba(255, 255, 255, 0.72);
+    --nav-bg-scrolled:       rgba(255, 255, 255, 0.92);
+
+    /* ---- 文字 ---- */
+    --text:                  #111827;
+    --text-secondary:        #6b7280;
+    --text-tertiary:         #9ca3af;
+    --btn-text:              #ffffff;
+
+    /* ---- 边框 ---- */
+    --border:                #e5e7eb;
+    --border-light:          #f3f4f6;
+
+    /* ---- 阴影 ---- */
+    --shadow-xs:             0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm:             0 1px 2px rgba(0, 0, 0, 0.04);   /* 保持向后兼容 */
+    --shadow:                0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md:             0 10px 40px rgba(0, 0, 0, 0.06);
+    --shadow-lg:             0 10px 40px rgba(0, 0, 0, 0.06);   /* 向后兼容别名 */
+    --shadow-nav:            0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-btn:            0 4px 14px rgba(0, 0, 0, 0.1);
+    --shadow-btn-hover:      0 12px 32px rgba(0, 0, 0, 0.18);
+    --shadow-btn-outline:    0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-card:           0 20px 48px rgba(0, 0, 0, 0.1);
+    --shadow-card-item:      0 12px 32px rgba(0, 0, 0, 0.07);
+    --shadow-contact:        0 16px 40px rgba(0, 0, 0, 0.08);
+    --shadow-back-to-top:    0 8px 24px rgba(0, 0, 0, 0.15);
+    --shadow-avatar:         0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-avatar-about:   0 2px 24px rgba(0, 0, 0, 0.06);
+
+    /* ---- 圆角 ---- */
+    --radius-sm:             8px;
+    --radius:                12px;
+    --radius-lg:             20px;
+    --radius-xl:             24px;
+    --radius-full:           100px;
+
+    /* ---- 字体 ---- */
+    --font-sans:             -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono:             "SF Mono", "Fira Code", "Cascadia Code", monospace;
+
+    /* ---- 字阶 ---- */
+    --text-2xs:              10px;
+    --text-xs:               11px;
+    --text-sm:               13px;
+    --text-base:             15px;
+    --text-md:               16px;
+    --text-lg:               18px;
+    --text-xl:               20px;
+    --text-2xl:              28px;
+    --text-3xl:              34px;
+    --text-4xl:              52px;
+
+    /* ---- 字重 ---- */
+    --font-normal:           400;
+    --font-medium:           500;
+    --font-semibold:         600;
+    --font-bold:             700;
+    --font-extrabold:        800;
+    --font-light:            300;
+
+    /* ---- 间距 ---- */
+    --space-xs:              4px;
+    --space-sm:              8px;
+    --space-md:              16px;
+    --space-lg:              24px;
+    --space-xl:              32px;
+    --space-2xl:             40px;
+    --space-3xl:             64px;
+    --space-4xl:             80px;
+
+    /* ---- 过渡 ---- */
+    --ease-out-expo:         cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-back:         cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-in-out:           cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast:       0.2s ease;
+    --transition-base:       0.3s ease;
+    --transition-slow:       0.4s ease;
+
+    /* ---- 布局 ---- */
+    --container-max:         880px;
+
+    /* ---- 特殊效果 ---- */
+    --btn-hover-bg:           #1f2937;
+    --btn-outline-hover-bg:   #f9fafb;
     --btn-outline-hover-border: #d1d5db;
-    --avatar-border: #ffffff;
-    --skill-glow: rgba(37, 99, 235, 0.3);
-    --hero-glow-1: rgba(37, 99, 235, 0.04);
-    --hero-glow-2: rgba(99, 102, 241, 0.03);
-    --badge-border: rgba(37, 99, 235, 0.12);
-    --highlight-bg: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
-    --highlight-border: rgba(37, 99, 235, 0.15);
-    --accent-glow: rgba(37, 99, 235, 0.08);
-    --accent-glow-strong: rgba(37, 99, 235, 0.2);
-    --accent-glow-light: rgba(37, 99, 235, 0.1);
-    --radius-sm: 8px;
-    --radius: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 24px;
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    --font-mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+    --avatar-border:          #ffffff;
+    --skill-glow:             rgba(37, 99, 235, 0.3);
+    --hero-glow-1:            rgba(37, 99, 235, 0.04);
+    --hero-glow-2:            rgba(99, 102, 241, 0.03);
+    --badge-border:           rgba(37, 99, 235, 0.12);
+    --highlight-bg:           linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+    --highlight-border:       rgba(37, 99, 235, 0.15);
+    --accent-glow:            rgba(37, 99, 235, 0.08);
+    --accent-glow-strong:     rgba(37, 99, 235, 0.2);
+    --accent-glow-light:      rgba(37, 99, 235, 0.1);
+    --ripple-bg:              rgba(255, 255, 255, 0.3);
+    --ripple-bg-dark:         rgba(255, 255, 255, 0.15);
+    --avatar-shadow:          0 0 0 5px var(--border-light), 0 8px 32px rgba(0, 0, 0, 0.1);
+    --avatar-shadow-hover:    0 0 0 5px var(--accent-light), 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Dark theme */
+/* ================================================================
+ * 暗色主题 (Dark Theme)
+ * ================================================================
+ * 覆盖 :root 中的变量值。未列出的变量继承 :root 的默认值。
+ * ================================================================ */
 [data-theme="dark"] {
-    --bg: #0f172a;
-    --surface: #1e293b;
-    --text: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-tertiary: #64748b;
-    --accent: #60a5fa;
-    --accent-hover: #93bbfd;
-    --accent-light: #1e3a5f;
-    --border: #334155;
-    --border-light: #1e293b;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
-    --nav-bg: rgba(15, 23, 42, 0.72);
-    --btn-text: #0f172a;
-    --btn-hover-bg: #e2e8f0;
-    --btn-outline-hover-bg: #1e293b;
+    /* ---- 主色调 ---- */
+    --accent:                #60a5fa;
+    --accent-hover:          #93bbfd;
+    --accent-light:          #1e3a5f;
+    --accent-glow-color:     #93bbfd;
+
+    /* ---- 背景 ---- */
+    --bg:                    #0f172a;
+    --surface:               #1e293b;
+    --nav-bg:                rgba(15, 23, 42, 0.72);
+    --nav-bg-scrolled:       rgba(15, 23, 42, 0.92);
+
+    /* ---- 文字 ---- */
+    --text:                  #f1f5f9;
+    --text-secondary:        #94a3b8;
+    --text-tertiary:         #64748b;
+    --btn-text:              #0f172a;
+
+    /* ---- 边框 ---- */
+    --border:                #334155;
+    --border-light:          #1e293b;
+
+    /* ---- 阴影 ---- */
+    --shadow-xs:             0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-sm:             0 1px 2px rgba(0, 0, 0, 0.2);   /* 保持向后兼容 */
+    --shadow:                0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md:             0 10px 40px rgba(0, 0, 0, 0.3);
+    --shadow-lg:             0 10px 40px rgba(0, 0, 0, 0.3);   /* 向后兼容别名 */
+    --shadow-nav:            0 4px 24px rgba(0, 0, 0, 0.35);
+    --shadow-btn:            0 4px 14px rgba(0, 0, 0, 0.25);
+    --shadow-btn-hover:      0 12px 32px rgba(0, 0, 0, 0.35);
+    --shadow-btn-outline:    0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-card:           0 20px 48px rgba(0, 0, 0, 0.3);
+    --shadow-card-item:      0 12px 32px rgba(0, 0, 0, 0.2);
+    --shadow-contact:        0 16px 40px rgba(0, 0, 0, 0.25);
+    --shadow-back-to-top:    0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-avatar:         0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* ---- 特殊效果 ---- */
+    --btn-hover-bg:           #e2e8f0;
+    --btn-outline-hover-bg:   #1e293b;
     --btn-outline-hover-border: #475569;
-    --avatar-border: #1e293b;
-    --skill-glow: rgba(96, 165, 250, 0.3);
-    --hero-glow-1: rgba(96, 165, 250, 0.04);
-    --hero-glow-2: rgba(129, 140, 248, 0.03);
-    --badge-border: rgba(96, 165, 250, 0.15);
-    --highlight-bg: linear-gradient(135deg, #1e293b 0%, #1a2744 100%);
-    --highlight-border: rgba(96, 165, 250, 0.2);
-    --accent-glow: rgba(96, 165, 250, 0.1);
-    --accent-glow-strong: rgba(96, 165, 250, 0.2);
-    --accent-glow-light: rgba(96, 165, 250, 0.12);
+    --avatar-border:          #1e293b;
+    --skill-glow:             rgba(96, 165, 250, 0.3);
+    --hero-glow-1:            rgba(96, 165, 250, 0.04);
+    --hero-glow-2:            rgba(129, 140, 248, 0.03);
+    --badge-border:           rgba(96, 165, 250, 0.15);
+    --highlight-bg:           linear-gradient(135deg, #1e293b 0%, #1a2744 100%);
+    --highlight-border:       rgba(96, 165, 250, 0.2);
+    --accent-glow:            rgba(96, 165, 250, 0.1);
+    --accent-glow-strong:     rgba(96, 165, 250, 0.2);
+    --accent-glow-light:      rgba(96, 165, 250, 0.12);
+    --ripple-bg:              rgba(255, 255, 255, 0.15);
+    --ripple-bg-dark:         rgba(255, 255, 255, 0.08);
+    --avatar-shadow:          0 0 0 5px var(--border-light), 0 8px 32px rgba(0, 0, 0, 0.3);
+    --avatar-shadow-hover:    0 0 0 5px var(--accent-light), 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* Smooth theme transition */
@@ -104,6 +216,104 @@ body {
     min-height: 100vh;
 }
 
+/* ===== Skip Link（无障碍：键盘用户跳转到主内容）===== */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-md);
+    z-index: 10001;
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+}
+
+/* ===== Loading Screen ===== */
+/*
+ * 首次访问时全屏展示 Logo + Loading，1.5s 后淡出。
+ * 通过 sessionStorage 控制：同标签页内刷新不再显示。
+ */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    /* 淡出过渡 */
+    transition: opacity 0.5s var(--ease-in-out);
+}
+
+/* 淡出状态 */
+.loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* DOM 移除状态 */
+.loading-screen.hidden {
+    display: none;
+}
+
+/* 内容区域 */
+.loading-content {
+    text-align: center;
+    /* 呼吸脉冲：缩小→放大循环 */
+    animation: loadingPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes loadingPulse {
+    from { opacity: 0.5; transform: scale(0.96); }
+    to   { opacity: 1;   transform: scale(1); }
+}
+
+/* 图标 */
+.loading-icon {
+    display: block;
+    font-size: 56px;
+    margin-bottom: var(--space-md);
+}
+
+/* 名称 */
+.loading-name {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.3px;
+}
+
+/* 文字 */
+.loading-text {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+}
+
+/* 三点动画 */
+.loading-dots::after {
+    content: '';
+    animation: loadingDots 1.2s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+
 /* ===== Navigation ===== */
 nav {
     position: sticky;
@@ -117,6 +327,20 @@ nav {
     -webkit-backdrop-filter: blur(20px);
     padding: 16px 40px;
     border-bottom: 1px solid var(--border);
+    /* 导航栏背景和阴影的平滑过渡 */
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* 滚动后导航栏状态：更 opaque 的背景 + 阴影 */
+nav.nav-scrolled {
+    background: var(--nav-bg-scrolled);
+    box-shadow: var(--shadow-nav);
+}
+
+/* 暗色模式下滚动后的导航栏 */
+[data-theme="dark"] nav.nav-scrolled {
+    background: var(--nav-bg-scrolled);
+    box-shadow: var(--shadow-nav);
 }
 
 .logo {
@@ -268,14 +492,14 @@ nav a:hover {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--surface);
-    box-shadow: 0 0 0 5px var(--border-light), 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--avatar-shadow);
+    transition: transform var(--transition-slow) var(--ease-in-out),
+                box-shadow var(--transition-slow) var(--ease-in-out);
 }
 
 .hero-avatar img:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 0 5px var(--accent-light), 0 12px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--avatar-shadow-hover);
 }
 
 /* Name */
@@ -356,7 +580,7 @@ nav a:hover {
     border-radius: 100px;
     text-decoration: none;
     letter-spacing: -0.2px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s var(--ease-in-out);
     cursor: pointer;
 }
 
@@ -364,14 +588,14 @@ nav a:hover {
     background: var(--text);
     color: var(--btn-text);
     border: 2px solid var(--text);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-btn);
 }
 
 .btn-primary:hover {
     background: var(--btn-hover-bg);
     border-color: var(--btn-hover-bg);
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow-btn-hover);
 }
 
 .btn-primary:active {
@@ -389,7 +613,7 @@ nav a:hover {
     border-color: var(--text);
     background: var(--surface);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-btn-outline);
 }
 
 .btn-outline:active {
@@ -414,7 +638,7 @@ nav a:hover {
     color: var(--text-tertiary);
     background: transparent;
     border: 1px solid transparent;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s var(--ease-in-out);
 }
 
 .social-icon:hover {
@@ -437,13 +661,13 @@ nav a:hover {
     transform: translateY(24px);
 }
 
-.hero-animate.entered .hero-welcome   { animation: heroFadeIn 0.6s 0.00s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-avatar    { animation: heroFadeIn 0.7s 0.06s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-name      { animation: heroFadeIn 0.7s 0.12s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-tags      { animation: heroFadeIn 0.6s 0.20s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-intro     { animation: heroFadeIn 0.6s 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-actions   { animation: heroFadeIn 0.6s 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.hero-animate.entered .hero-social    { animation: heroFadeIn 0.6s 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hero-animate.entered .hero-welcome   { animation: heroFadeIn 0.6s 0.00s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-avatar    { animation: heroFadeIn 0.7s 0.06s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-name      { animation: heroFadeIn 0.7s 0.12s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-tags      { animation: heroFadeIn 0.6s 0.20s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-intro     { animation: heroFadeIn 0.6s 0.28s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-actions   { animation: heroFadeIn 0.6s 0.36s var(--ease-out-expo) forwards; }
+.hero-animate.entered .hero-social    { animation: heroFadeIn 0.6s 0.44s var(--ease-out-expo) forwards; }
 
 @keyframes heroFadeIn {
     from { opacity: 0; transform: translateY(24px); }
@@ -501,7 +725,7 @@ nav a:hover {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--avatar-border);
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-avatar-about);
 }
 
 .about-meta {
@@ -581,15 +805,15 @@ nav a:hover {
     background: var(--bg);
     border: 1px solid var(--border-light);
     border-radius: var(--radius);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.3s var(--ease-in-out),
+                box-shadow 0.3s var(--ease-in-out),
                 border-color 0.25s ease,
                 background 0.25s ease;
 }
 
 .about-card-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--shadow-card-item);
     border-color: var(--border);
     background: var(--surface);
 }
@@ -615,7 +839,7 @@ nav a:hover {
     box-shadow: 0 4px 12px var(--accent-glow-light);
 }
 
-.about-card-text h4 {
+.about-card-text h3 {
     font-size: 15px;
     font-weight: 700;
     color: var(--text);
@@ -668,8 +892,8 @@ nav a:hover {
     border: 1px solid var(--badge-border);
     border-radius: 100px;
     letter-spacing: -0.1px;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.25s var(--ease-in-out),
+                box-shadow 0.25s var(--ease-in-out),
                 background 0.25s ease;
 }
 
@@ -755,7 +979,7 @@ nav a:hover {
 
 @keyframes dotPulse {
     0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow-strong); }
-    50%      { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
+    50%      { box-shadow: 0 0 0 12px transparent; }
 }
 
 /* Card */
@@ -814,9 +1038,9 @@ nav a:hover {
 .reveal,
 [data-anim] {
     opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s var(--ease-out-expo),
+                transform 0.8s var(--ease-out-expo),
+                filter 0.8s var(--ease-out-expo);
 }
 
 /* Default: fade-up */
@@ -859,12 +1083,50 @@ nav a:hover {
     filter: blur(0);
 }
 
+/* ===== Section 级滚动动画（data-scroll）===== */
+/*
+ * 使用 Intersection Observer 驱动。
+ * 每个 <section> 通过 data-scroll 属性指定动画方向：
+ *   fade-up   → 从下方 48px 处向上淡入
+ *   fade-left → 从左侧 48px 处向右滑入
+ *   fade-right→ 从右侧 48px 处向左滑入
+ * 当 section 进入视口时，JS 添加 .revealed 类触发过渡动画。
+ */
+
+/* 基础隐藏状态 —— 所有带 data-scroll 的元素初始不可见 */
+[data-scroll] {
+    opacity: 0;
+    transition: opacity 0.8s var(--ease-out-expo),
+                transform 0.8s var(--ease-out-expo);
+}
+
+/* Fade Up —— 从下方淡入（默认推荐用于居中对齐的区块） */
+[data-scroll="fade-up"] {
+    transform: translateY(48px);
+}
+
+/* Fade Left —— 从左侧滑入 */
+[data-scroll="fade-left"] {
+    transform: translateX(-48px);
+}
+
+/* Fade Right —— 从右侧滑入 */
+[data-scroll="fade-right"] {
+    transform: translateX(48px);
+}
+
+/* 进入视口后的显示状态 —— 归位到自然位置 */
+[data-scroll].revealed {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+}
+
 /* ===== Image Fade-in ===== */
 img.anim-img {
     opacity: 0;
     transform: scale(0.96);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.7s var(--ease-out-expo),
+                transform 0.7s var(--ease-out-expo);
 }
 
 img.anim-img.loaded {
@@ -885,14 +1147,14 @@ img.anim-img.loaded {
 .btn-ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--ripple-bg);
     transform: scale(0);
     animation: ripple 0.6s ease-out forwards;
     pointer-events: none;
 }
 
 [data-theme="dark"] .btn-ripple {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--ripple-bg-dark);
 }
 
 @keyframes ripple {
@@ -921,6 +1183,15 @@ nav a.nav-active::after {
 }
 
 /* ===== Back to Top Button ===== */
+/*
+ * 返回顶部按钮 —— 由 JavaScript 通过 IntersectionObserver 逻辑驱动。
+ *
+ * 状态说明：
+ *   隐藏态：opacity: 0 + scale(0.6) + 不可点击
+ *   显示态：.visible 类触发弹性入场动画
+ *   悬停态：.visible:hover 背景变色 + 上浮
+ *   点击态：JS 动态添加 .popping 类触发回弹动画
+ */
 .back-to-top {
     position: fixed;
     bottom: 32px;
@@ -937,34 +1208,53 @@ nav a.nav-active::after {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow);
+
+    /* 默认隐藏状态 */
     opacity: 0;
-    transform: translateY(16px);
+    transform: scale(0.6) translateY(16px);
     pointer-events: none;
-    transition: opacity 0.3s ease,
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.3s ease,
+
+    /* hover / color 变化保持平滑 */
+    transition: background 0.3s ease,
                 border-color 0.3s ease,
                 color 0.3s ease,
                 box-shadow 0.3s ease;
 }
 
+/* 显示态：弹性入场动画 */
 .back-to-top.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
     pointer-events: auto;
+    /* 弹性缓动：var(--ease-out-back) → 超过目标值再回弹 */
+    animation: backToTopIn 0.5s var(--ease-out-back) forwards;
 }
 
-.back-to-top:hover {
+/* 弹性入场关键帧：从缩小 + 下移 → 弹出到自然位置 */
+@keyframes backToTopIn {
+    0%   { opacity: 0; transform: scale(0.6) translateY(16px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 悬停态 */
+.back-to-top.visible:hover {
     background: var(--text);
     color: var(--btn-text);
     border-color: var(--text);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1) translateY(-3px);
+    box-shadow: var(--shadow-back-to-top);
 }
 
-.back-to-top:active {
-    transform: translateY(0);
-    transition: transform 0.1s ease;
+/* 点击回弹动画：JS 动态添加 .popping 类触发 */
+.back-to-top.popping {
+    animation: backToTopPop 0.35s var(--ease-out-back) forwards;
+}
+
+/* 点击回弹关键帧：缩小 → 弹回 */
+@keyframes backToTopPop {
+    0%   { transform: scale(1) translateY(0); }
+    40%  { transform: scale(0.82) translateY(4px); }
+    100% { transform: scale(1) translateY(0); }
 }
 
 /* ===== Parallax & Focus ===== */
@@ -1008,8 +1298,8 @@ button:focus-visible {
     border-radius: var(--radius-lg);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.3s var(--ease-in-out),
+                box-shadow 0.3s var(--ease-in-out),
                 border-color 0.3s ease,
                 background 0.3s ease;
     cursor: default;
@@ -1021,7 +1311,7 @@ a.contact-card {
 
 .contact-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-contact);
     border-color: var(--border);
     background: var(--surface);
 }
@@ -1050,7 +1340,7 @@ a.contact-card {
 }
 
 /* Text */
-.contact-card h4 {
+.contact-card h3 {
     font-size: 16px;
     font-weight: 700;
     color: var(--text);
@@ -1067,8 +1357,6 @@ a.contact-card {
     font-size: 12px;
     color: var(--text-tertiary);
 }
-
-/* ===== Legacy card (unused, kept for safety) ===== */
 
 /* ===== Projects Section ===== */
 .projects h2 {
@@ -1088,13 +1376,14 @@ a.contact-card {
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.35s var(--ease-in-out),
+                box-shadow 0.35s var(--ease-in-out);
 }
 
-.project-card:hover {
+/* 鼠标悬停状态：由 JavaScript 通过 .project-card-hovered 类控制 */
+.project-card-hovered {
     transform: scale(1.03);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-card);
 }
 
 /* Image */
@@ -1113,7 +1402,7 @@ a.contact-card {
     transition: transform 0.4s ease;
 }
 
-.project-card:hover .project-img-placeholder {
+.project-card-hovered .project-img-placeholder {
     transform: scale(1.08);
 }
 
@@ -1204,6 +1493,13 @@ a.contact-card {
     background: var(--btn-outline-hover-bg);
 }
 
+/* 禁用状态的项目链接（如"开发中"、"控制台应用"） */
+.project-link-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* ===== Skills Section ===== */
 .skills-section h2 {
     text-align: center;
@@ -1228,15 +1524,15 @@ a.contact-card {
     background: var(--bg);
     border: 1px solid var(--border-light);
     border-radius: var(--radius);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.3s var(--ease-in-out),
+                box-shadow 0.3s var(--ease-in-out),
                 border-color 0.3s ease,
                 background 0.3s ease;
 }
 
 .skill-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--shadow-card-item);
     border-color: var(--border);
     background: var(--surface);
 }
@@ -1276,7 +1572,7 @@ a.contact-card {
     margin-bottom: 8px;
 }
 
-.skill-head h4 {
+.skill-head h3 {
     font-size: 15px;
     font-weight: 700;
     color: var(--text);
@@ -1298,31 +1594,37 @@ a.contact-card {
     overflow: hidden;
 }
 
+/*
+ * 技能进度条
+ * 初始宽度为 0，由 JavaScript 通过 IntersectionObserver
+ * 检测到 Skills 区域进入视口后，动画填充到目标宽度。
+ * 目标宽度通过 --w 变量（内联 style）定义。
+ */
 .skill-fill {
     height: 100%;
-    width: var(--w);
+    width: 0;                       /* 初始宽度为 0，JS 动画驱动增长 */
     border-radius: 100px;
     background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-    transform-origin: left;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left;         /* 从左侧开始填充 */
+    /* 过渡由 JS 通过内联 style 控制，此处保留作为兜底 */
 }
 
 .skill-card:hover .skill-fill {
-    background: linear-gradient(90deg, #60a5fa, var(--accent-hover));
+    background: linear-gradient(90deg, var(--accent-glow-color), var(--accent-hover));
     box-shadow: 0 0 10px var(--skill-glow);
 }
 
-/* Animate bar on reveal */
-.skill-card.revealed .skill-fill {
-    animation: barFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* ===== Reduced Motion（无障碍：尊重用户系统动效偏好）===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
-
-@keyframes barFill {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-}
-
-/* ===== Legacy skills tags (unused) ===== */
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
@@ -1398,10 +1700,6 @@ a.contact-card {
 
     .container {
         padding: 0 16px 60px;
-    }
-
-    .card {
-        padding: 24px;
     }
 
     /* About responsive */

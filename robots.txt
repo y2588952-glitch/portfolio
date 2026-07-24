@@ -1,0 +1,6 @@
+# https://portfolio-kohl-beta-zit57zqdmb.vercel.app
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://portfolio-kohl-beta-zit57zqdmb.vercel.app/sitemap.xml

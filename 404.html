@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ===== 基础 SEO ===== -->
+    <meta name="description" content="页面未找到 — 亦 Yi 个人作品集">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ===== 浏览器主题色 ===== -->
+    <meta name="theme-color" content="#f9fafb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- ===== Open Graph ===== -->
+    <meta property="og:title" content="404 — 页面未找到 | 亦 Yi">
+    <meta property="og:description" content="你访问的页面不存在或已被移动。返回首页查看我的作品集。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-kohl-beta-zit57zqdmb.vercel.app/404.html">
+    <meta property="og:site_name" content="亦 | Personal Portfolio">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- ===== 图标 ===== -->
+    <link rel="canonical" href="https://portfolio-kohl-beta-zit57zqdmb.vercel.app">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <title>404 — 页面未找到 | 亦 Yi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== 404 页面专属样式 =====
+         * 复用全局 CSS 变量（--bg、--text、--accent 等），
+         * 仅补充 404 特有的布局和动画。 */
+
+        /* 主内容区：垂直居中 */
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: calc(100vh - 80px);   /* 减去导航栏高度 */
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* 大号 404 数字 */
+        .error-code {
+            font-size: clamp(96px, 15vw, 160px);
+            font-weight: var(--font-extrabold);
+            line-height: 1;
+            letter-spacing: -4px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+            /* 浮动动画 */
+            animation: errorFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes errorFloat {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-8px); }
+        }
+
+        /* 提示标题 */
+        .error-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--text);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.3px;
+        }
+
+        /* 提示描述 */
+        .error-desc {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            max-width: 400px;
+            line-height: 1.8;
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* 按钮组 */
+        .error-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 复用 .btn 样式，补充间距 */
+        .error-actions .btn {
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 80px;
+                letter-spacing: -2px;
+            }
+            .error-title {
+                font-size: var(--text-lg);
+            }
+            .error-desc {
+                font-size: var(--text-sm);
+                padding: 0 var(--space-md);
+            }
+            .error-actions {
+                flex-direction: column;
+                width: 100%;
+                max-width: 240px;
+            }
+            .error-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 —— 与主站完全一致 -->
+    <nav>
+        <a href="/" class="logo" aria-label="返回首页">Yi Portfolio</a>
+        <div class="nav-right">
+            <ul>
+                <li><a href="/#about">关于我</a></li>
+                <li><a href="/#education">教育经历</a></li>
+                <li><a href="/#projects">项目</a></li>
+                <li><a href="/#skills">技能</a></li>
+                <li><a href="/#contact">联系我</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 404 主体内容 -->
+    <main class="error-page">
+        <h1 class="error-code">404</h1>
+        <p class="error-title">页面未找到</p>
+        <p class="error-desc">
+            你访问的页面不存在或已被移动。
+            请检查 URL 是否正确，或通过下方按钮返回。
+        </p>
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                返回首页
+            </a>
+            <a href="https://github.com/y2588952-glitch" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </main>
+
+    <!-- 主脚本：主题切换 -->
+    <script src="script.js"></script>
+</body>
+</html>
