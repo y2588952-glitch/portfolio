@@ -1,0 +1,7 @@
+# 二进制文件不做行尾转换，避免文件损坏
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.ico binary

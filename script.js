@@ -13,7 +13,9 @@
  *   五、Projects     —— 项目卡片 hover 交互 + 外部链接点击
  *   六、BackToTop    —— 返回顶部按钮显隐 + 弹性动画 + 平滑滚动
  *   七、Parallax     —— 视差滚动 + 移动端性能优化
- *   八、Utilities    —— 按钮涟漪效果 + 图片淡入 + 统一滚动调度
+ *   八、Utilities    —— 按钮涟漪效果 + 统一滚动调度
+ *   九、Toast        —— 统一通知系统（success / error）
+ *   十、ContactForm  —— 联系表单前端验证 + mailto 提交
  * ================================================================
  */
 
@@ -590,7 +592,7 @@
     // ---- 8.1 按钮涟漪效果 ----
     document.addEventListener('click', function (e) {
         var rippleEl = e.target.closest(
-            '.btn, .project-link, .social-icon, .theme-toggle, .contact-card'
+            '.btn, .project-link, .social-icon, .theme-toggle, .contact-card, .back-to-top'
         );
         if (!rippleEl) return;
 
@@ -642,5 +644,183 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+
+
+    /* ================================================================
+     * 九、Toast 通知系统
+     * ================================================================
+     * 统一样式的弹出通知，支持 success / error 两种类型。
+     * 自动 4s 后消失，点击可立即关闭。
+     *
+     * 用法：showToast('消息内容', 'success') 或 showToast('消息内容', 'error')
+     * ================================================================ */
+
+    /**
+     * 显示一条 Toast 通知
+     * @param {string} message - 通知文本
+     * @param {'success'|'error'} type - 类型（决定背景色）
+     */
+    function showToast(message, type) {
+        // 确保容器存在（懒创建）
+        var container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        // 创建 Toast 元素
+        var toast = document.createElement('div');
+        toast.className = 'toast toast-' + (type === 'error' ? 'error' : 'success');
+        toast.textContent = message;
+
+        // 点击即关闭
+        toast.addEventListener('click', function () {
+            removeToast(toast);
+        });
+
+        // 加入容器
+        container.appendChild(toast);
+
+        // 4 秒后自动移除
+        var timer = setTimeout(function () {
+            removeToast(toast);
+        }, 4000);
+
+        // 存储定时器以便清理
+        toast._timer = timer;
+
+        /**
+         * 移除 Toast（带淡出动画）
+         */
+        function removeToast(el) {
+            if (el._removing) return;         // 已在移除中
+            el._removing = true;
+            clearTimeout(el._timer);
+
+            el.classList.add('removing');
+            // 动画结束后从 DOM 移除
+            el.addEventListener('animationend', function () {
+                if (el.parentNode) el.parentNode.removeChild(el);
+            });
+        }
+    }
+
+
+    /* ================================================================
+     * 十、Contact Form（联系表单验证）
+     * ================================================================
+     * 前端验证规则：
+     *   - 姓名：必填，最少 2 个字符
+     *   - 邮箱：必填，需符合邮箱格式
+     *   - 留言：必填，最少 10 个字符
+     * 验证通过后构造 mailto 链接，打开默认邮件客户端。
+     * ================================================================ */
+
+    (function () {
+        var form = document.getElementById('contactForm');
+        if (!form) return;
+
+        // 获取表单字段
+        var nameInput    = document.getElementById('formName');
+        var emailInput   = document.getElementById('formEmail');
+        var messageInput = document.getElementById('formMessage');
+
+        /**
+         * 显示字段验证错误
+         * @param {HTMLElement} input - 输入框
+         * @param {string} msg - 错误消息（空字符串 = 清除错误）
+         */
+        function setFieldError(input, msg) {
+            var group = input.closest('.form-group');
+            var errorEl = group ? group.querySelector('.form-error') : null;
+            if (msg) {
+                input.classList.add('error');
+                if (errorEl) errorEl.textContent = msg;
+            } else {
+                input.classList.remove('error');
+                if (errorEl) errorEl.textContent = '';
+            }
+        }
+
+        /**
+         * 验证单个字段
+         * @returns {boolean} 是否通过验证
+         */
+        function validateName() {
+            var val = nameInput.value.trim();
+            if (!val) { setFieldError(nameInput, '请输入姓名'); return false; }
+            if (val.length < 2) { setFieldError(nameInput, '姓名至少 2 个字符'); return false; }
+            setFieldError(nameInput, '');
+            return true;
+        }
+
+        function validateEmail() {
+            var val = emailInput.value.trim();
+            if (!val) { setFieldError(emailInput, '请输入邮箱'); return false; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+                setFieldError(emailInput, '邮箱格式不正确');
+                return false;
+            }
+            setFieldError(emailInput, '');
+            return true;
+        }
+
+        function validateMessage() {
+            var val = messageInput.value.trim();
+            if (!val) { setFieldError(messageInput, '请输入留言内容'); return false; }
+            if (val.length < 10) { setFieldError(messageInput, '留言至少 10 个字符'); return false; }
+            setFieldError(messageInput, '');
+            return true;
+        }
+
+        // 失去焦点时实时校验
+        nameInput.addEventListener('blur', validateName);
+        emailInput.addEventListener('blur', validateEmail);
+        messageInput.addEventListener('blur', validateMessage);
+
+        // 输入时清除错误（即时反馈）
+        nameInput.addEventListener('input', function () {
+            if (nameInput.classList.contains('error')) validateName();
+        });
+        emailInput.addEventListener('input', function () {
+            if (emailInput.classList.contains('error')) validateEmail();
+        });
+        messageInput.addEventListener('input', function () {
+            if (messageInput.classList.contains('error')) validateMessage();
+        });
+
+        // 表单提交
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // 执行全部验证
+            var nameOk    = validateName();
+            var emailOk   = validateEmail();
+            var messageOk = validateMessage();
+
+            if (!nameOk || !emailOk || !messageOk) {
+                showToast('请检查表单中的错误', 'error');
+                return;
+            }
+
+            // 验证通过 → 构造 mailto 链接
+            var subject = encodeURIComponent('来自 Portfolio 的留言 - ' + nameInput.value.trim());
+            var body    = encodeURIComponent(
+                '姓名：' + nameInput.value.trim() + '\n' +
+                '邮箱：' + emailInput.value.trim() + '\n\n' +
+                messageInput.value.trim()
+            );
+
+            // 打开默认邮件客户端
+            window.location.href = 'mailto:y2588952@gmail.com?subject=' + subject + '&body=' + body;
+
+            // 显示成功提示
+            showToast('正在打开邮件客户端...', 'success');
+
+            // 清空表单
+            form.reset();
+        });
+    })();
 
 })();
